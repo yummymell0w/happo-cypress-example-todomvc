@@ -10,3 +10,4 @@ workflows:
     jobs:
       - cypress/run:
           start: npm run start:ci
+          command: npx happo-cypress -- npx cypress run
