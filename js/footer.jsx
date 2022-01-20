@@ -17,6 +17,7 @@ var app = app || {};
 				clearButton = (
 					<button
 						className="clear-completed"
+						style="font-weight:bold"
 						onClick={this.props.onClearCompleted}>
 						Clear completed
 					</button>
