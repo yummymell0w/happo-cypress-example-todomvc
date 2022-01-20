@@ -1,18 +1,29 @@
-name: End-to-end tests
-on: [push]
-jobs:
-  cypress-run:
-    runs-on: windows-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Run E2E tests
-        uses: cypress-io/github-action@v1
-        with:
-          start: "npm run start:ci"
-          wait-on: "http://localhost:8888"
-          # let's see if the Test Runner handles url in the config
-          # https://github.com/cypress-io/cypress/issues/5466
-          config: baseUrl=http://localhost:8888
+name: Cypress with Happo workflow
 
+on:
+  # Configure this workflow to trigger on pull requests and pushes to master
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  cypress:
+    name: Cypress with Happo
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run cypress
+        uses: cypress-io/github-action@v2
+        with:
+          command-prefix: npx happo-e2e -- npx
+        env:
+          # Inject secrets to the build
+          HAPPO_API_KEY: ${{ secrets.HAPPO_API_KEY }}
+          HAPPO_API_SECRET: ${{ secrets.HAPPO_API_SECRET }}
 
