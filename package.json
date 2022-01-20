@@ -22,7 +22,9 @@
     "lint": "eslint --fix cypress/integration/*.js cypress/support/*.js cypress/plugins/*.js",
     "effective:circle:config": "circleci config process circle.yml | sed /^#/d",
     "types": "tsc --noEmit",
-    "e2e": "cypress run"
+    "e2e": "cypress run",
+    "happo": "happo",
+    "happo-ci-github-actions": "happo-ci-github-actions"
   },
   "dependencies": {
     "director": "1.2.8",
