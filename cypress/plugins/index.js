@@ -12,6 +12,6 @@
 // the project's config changing)
 const happoTask = require('happo-cypress/task');
 
-module.exports = (on, config) => {
+module.exports = (on) => {
   on('task', happoTask)
 }
